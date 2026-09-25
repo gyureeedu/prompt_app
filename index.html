@@ -98,15 +98,20 @@
   <form method="dialog" class="settings-form">
     <h3>AI 연결 설정</h3>
     <p class="settings-desc">
-      Gemini API 키를 입력하면 AI가 실시간으로 분석합니다.<br />
+      Claude API 키를 입력하면 Claude가 실시간으로 분석합니다.<br />
       키가 없으면 <b>내장 규칙 기반 분석기</b>로 동작합니다.<br />
       키는 이 브라우저(localStorage)에만 저장됩니다.
     </p>
-    <label class="field-label" for="apiKey">Gemini API Key</label>
-    <input id="apiKey" type="password" placeholder="AIza..." autocomplete="off" />
+    <label class="field-label" for="apiKey">Claude API Key</label>
+    <input id="apiKey" type="password" placeholder="sk-ant-..." autocomplete="off" />
     <label class="field-label" for="modelName">모델</label>
-    <input id="modelName" type="text" placeholder="gemini-2.5-flash" />
-    <a class="settings-link" href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener">API 키 발급받기 →</a>
+    <input id="modelName" type="text" list="modelList" placeholder="claude-opus-5" />
+    <datalist id="modelList">
+      <option value="claude-opus-5"></option>
+      <option value="claude-sonnet-5"></option>
+      <option value="claude-haiku-4-5"></option>
+    </datalist>
+    <a class="settings-link" href="https://platform.claude.com/settings/keys" target="_blank" rel="noopener">API 키 발급받기 →</a>
     <div class="settings-actions">
       <button value="clear" class="ghost-btn" id="clearKey">키 삭제</button>
       <button value="save" class="primary-btn small" id="saveKey">저장</button>

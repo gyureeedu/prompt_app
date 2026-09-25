@@ -19,7 +19,10 @@
 ## 실행
 빌드 없이 `index.html`을 브라우저로 열면 됩니다. (GitHub Pages·Vercel 정적 배포 가능)
 
-## AI 연결
-- 우측 상단 ⚙ → Gemini API 키 입력 시 Gemini(기본 `gemini-2.5-flash`)로 분석
+## AI 연결 (Claude)
+- 우측 상단 ⚙ → Claude API 키(`sk-ant-...`) 입력 시 Claude로 분석 (기본 모델 `claude-opus-5`)
+- Anthropic TypeScript SDK(`@anthropic-ai/sdk`)를 jsDelivr ESM으로 불러와 브라우저에서 직접 호출합니다 (`dangerouslyAllowBrowser: true`)
+- 응답은 JSON Schema 구조화 출력(`output_config.format`)으로 받습니다
+- `claude-opus-5` 사용 시 서버측 거절 폴백(`fallbacks: "default"`)을 켭니다
 - 키가 없으면 내장 규칙 기반 분석기로 동작
-- 키는 브라우저 localStorage에만 저장됩니다. 공개 배포 시 키 노출에 유의하세요.
+- 키는 브라우저 localStorage에만 저장됩니다. 브라우저에서 직접 호출하는 방식이라 공개 서비스로 배포할 때는 서버(프록시)를 두는 구성이 필요합니다.
