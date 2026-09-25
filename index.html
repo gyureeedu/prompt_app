@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PromptPro · RT-CFCG 프롬프트 진단</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ============ Header ============ -->
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a href="#top" class="brand"><span class="brand-mark">P</span>PromptPro</a>
+    <nav class="nav">
+      <a href="#elements">핵심 요소</a>
+      <a href="#analyzer" class="nav-ai">✨ AI 분석기</a>
+      <a href="#anatomy">구조 분석</a>
+      <button class="nav-settings" id="openSettings" title="API 설정">⚙</button>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============ Hero ============ -->
+  <section class="hero container">
+    <span class="eyebrow">EXPERT GUIDE</span>
+    <h1>프롬프트의 완성도를<br /><span class="grad">RT-CFCG 프레임워크로 진단하세요</span></h1>
+    <p class="hero-sub">AI를 기반으로 당신의 프롬프트를 6대 요소로 정밀 분석합니다.</p>
+  </section>
+
+  <!-- ============ Element cards ============ -->
+  <section id="elements" class="container cards" aria-label="RT-CFCG 핵심 요소"></section>
+
+  <!-- ============ Analyzer ============ -->
+  <section id="analyzer" class="container">
+    <div class="panel">
+      <div class="panel-head">
+        <h2>✨ AI 프롬프트 진단 센터 <span class="muted-strong">(RT-CFCG)</span></h2>
+        <p>AI가 실시간으로 프롬프트의 골격을 분석합니다.</p>
+        <span class="mode-badge" id="modeBadge"></span>
+      </div>
+
+      <div class="tabs" role="tablist">
+        <button class="tab active" role="tab" data-tab="diagnose">요소별 진단 &amp; 해부</button>
+        <button class="tab" role="tab" data-tab="optimize">프롬프트 최적화</button>
+      </div>
+
+      <div class="panel-body">
+        <div class="col-input">
+          <label for="promptInput" class="field-label" id="inputLabel">분석할 프롬프트 입력</label>
+          <textarea id="promptInput" placeholder="분석하고 싶은 프롬프트를 입력하세요..."></textarea>
+          <div class="input-meta">
+            <button class="link-btn" id="fillSample" type="button">예시 프롬프트 넣기</button>
+            <span id="charCount">0자</span>
+          </div>
+          <button class="primary-btn" id="runBtn" type="button">프롬프트 진단 시작</button>
+        </div>
+
+        <div class="col-result" id="result">
+          <div class="empty">
+            <div class="empty-icon">🧪</div>
+            <p>입력창에 프롬프트를 넣으면<br />진단 결과가 표시됩니다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Anatomy ============ -->
+  <section id="anatomy" class="container">
+    <div class="anatomy">
+      <div class="anatomy-head">
+        <div>
+          <h2>프롬프트 구조 해부도</h2>
+          <p>RT-CFCG 프레임워크에 따른 논리적 해체</p>
+        </div>
+        <div class="seg" role="tablist">
+          <button class="seg-btn active" data-view="sample">표준 예시</button>
+          <button class="seg-btn" data-view="mine">내 분석 결과</button>
+        </div>
+      </div>
+      <div class="anatomy-body" id="anatomyBody"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer container">
+  © PromptPro · RT-CFCG Prompt Framework
+</footer>
+
+<!-- ============ Settings modal ============ -->
+<dialog id="settings">
+  <form method="dialog" class="settings-form">
+    <h3>AI 연결 설정</h3>
+    <p class="settings-desc">
+      Gemini API 키를 입력하면 AI가 실시간으로 분석합니다.<br />
+      키가 없으면 <b>내장 규칙 기반 분석기</b>로 동작합니다.<br />
+      키는 이 브라우저(localStorage)에만 저장됩니다.
+    </p>
+    <label class="field-label" for="apiKey">Gemini API Key</label>
+    <input id="apiKey" type="password" placeholder="AIza..." autocomplete="off" />
+    <label class="field-label" for="modelName">모델</label>
+    <input id="modelName" type="text" placeholder="gemini-2.5-flash" />
+    <a class="settings-link" href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener">API 키 발급받기 →</a>
+    <div class="settings-actions">
+      <button value="clear" class="ghost-btn" id="clearKey">키 삭제</button>
+      <button value="save" class="primary-btn small" id="saveKey">저장</button>
+    </div>
+  </form>
+</dialog>
+
+<div class="toast" id="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
